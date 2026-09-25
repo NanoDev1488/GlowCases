@@ -1,0 +1,99 @@
+# ============================================================================== #
+#                                                                                #
+#                         GlowCases - HolyWorld Style Cases                      #
+#                                                                                #
+# ============================================================================== #
+
+# Тип хранилища данных (SQLITE, MYSQL, YAML)
+storage:
+  type: SQLITE
+  mysql:
+    host: "localhost"
+    port: 3306
+    database: "glowcases"
+    username: "root"
+    password: ""
+    table-prefix: "glowcases_"
+    maximum-pool-size: 10
+    minimum-idle: 2
+    connection-timeout: 30000
+
+# Настройки голограмм над блоками кейсов
+holograms:
+  enabled: true
+  offset-y: 1.6 # Высота над блоком
+  floating-item:
+    enabled: true
+    offset-y: 0.8 # Высота парящего предмета
+    rotate: true # Вращение предмета
+  lines:
+    - "%case_display_name%"
+    - ""
+    - "&7Нажмите &6&lПКМ&7, чтобы открыть"
+    - "&7Нажмите &a&lЛКМ&7, чтобы посмотреть"
+
+# Настройки анимации рулетки
+roulette:
+  title: "&#fb6b02&lК&#fb7a02&lЕ&#fb8902&lЙ&#fb9802&lС &#fba802&l» %case_display_name%"
+  size: 27 # 27 или 45
+  indicator-slot-top: 4
+  indicator-slot-bottom: 22
+  indicator-item:
+    material: HOPPER
+    name: "&#fb6b02&l▲ &#fbb602&lВЫИГРЫШ &#fb6b02&l▲"
+    lore:
+      - "&7Предмет по центру будет выдан вам!"
+  background-item:
+    material: BLACK_STAINED_GLASS_PANE
+    name: " "
+  # Длительность прокрутки в тиках (20 тиков = 1 секунда)
+  total-ticks: 120
+  # Звуки во время прокрутки
+  tick-sound:
+    sound: "BLOCK_NOTE_BLOCK_HAT"
+    volume: 0.8
+    pitch: 1.2
+  win-sound:
+    sound: "UI_TOAST_CHALLENGE_COMPLETE"
+    volume: 1.0
+    pitch: 1.0
+
+# Настройки главного меню кейсов (/cases)
+main-menu:
+  title: "&#fb6b02&lС&#fb7802&lП&#fb8502&lИ&#fb9202&lС&#fb9f02&lО&#fbb602&lК &#fbc302&lК&#fbd002&lЕ&#fbdd02&lЙ&#fbea02&lС&#fbf702&lО&#ffea00&lВ"
+  size: 36
+  background:
+    material: BLACK_STAINED_GLASS_PANE
+    name: " "
+  profile-slot: 4
+  profile-item:
+    material: PLAYER_HEAD
+    name: "&#fbb602&lВАШ ПРОФИЛЬ"
+    lore:
+      - "&7Игрок: &#fb6b02%player_name%"
+      - "&7Всего открыто кейсов: &#fb6b02%glowcases_opened%"
+      - ""
+      - "&7Ваши ключи:"
+      - "%keys_summary%"
+  cases:
+    donate:
+      slot: 11
+    titles:
+      slot: 12
+    runes:
+      slot: 13
+    spawners:
+      slot: 14
+    money:
+      slot: 15
+
+# Настройки меню предпросмотра кейса
+preview-menu:
+  title: "&#fb6b02&lП&#fb7a02&lР&#fb8902&lО&#fb9802&lС&#fba802&lМ&#fbb702&lО&#fbc602&lТ&#fbd502&lР &#fbe402&l» %case_display_name%"
+  size: 45
+  back-button-slot: 40
+  back-button-item:
+    material: BARRIER
+    name: "&c&lНазад"
+    lore:
+      - "&7Нажмите, чтобы вернуться в меню"

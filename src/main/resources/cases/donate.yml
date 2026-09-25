@@ -1,0 +1,118 @@
+id: "donate"
+display-name: "&#fb6b02&lД&#fb7802&lО&#fb8502&lН&#fb9202&lА&#fb9f02&lТ &#fbb602&lК&#fbc302&lЕ&#fbd002&lЙ&#fbdd02&lС"
+
+# Предмет кейса в меню
+menu-item:
+  material: ENDER_CHEST
+  name: "&#fb6b02&lД&#fb7802&lО&#fb8502&lН&#fb9202&lА&#fb9f02&lТ &#fbb602&lК&#fbc302&lЕ&#fbd002&lЙ&#fbdd02&lС"
+  glowing: true
+  lore:
+    - "&7Испытайте свою удачу и получите"
+    - "&7уникальную привилегию навсегда!"
+    - ""
+    - "&fВаши ключи: &#fb6b02%glowcases_keys_donate% шт."
+    - ""
+    - "&6▸ Нажмите &e&lЛКМ&6, чтобы посмотреть призы"
+    - "&6▸ Нажмите &e&lПКМ&6, чтобы открыть кейс"
+
+# Ключ от кейса
+key:
+  material: TRIPWIRE_HOOK
+  name: "&#fb6b02&lКлюч от Донат Кейса"
+  glowing: true
+  lore:
+    - "&7Используйте этот ключ для"
+    - "&7открытия Донат Кейса на спавне!"
+
+# Предметы в кейсе
+items:
+  vip:
+    material: IRON_INGOT
+    name: "&a&lVIP"
+    rarity: "COMMON"
+    chance: 35.0
+    broadcast: false
+    lore:
+      - "&7Базовая донат-привилегия"
+      - "&7Шанс: &a35%"
+    commands:
+      - "lp user {player} parent set vip"
+      - "msg {player} &aПоздравляем с получением статуса VIP!"
+
+  premium:
+    material: GOLD_INGOT
+    name: "&e&lPREMIUM"
+    rarity: "UNCOMMON"
+    chance: 25.0
+    broadcast: false
+    lore:
+      - "&7Продвинутая донат-привилегия"
+      - "&7Шанс: &e25%"
+    commands:
+      - "lp user {player} parent set premium"
+      - "msg {player} &eПоздравляем с получением статуса PREMIUM!"
+
+  creative:
+    material: DIAMOND
+    name: "&b&lCREATIVE"
+    rarity: "RARE"
+    chance: 18.0
+    broadcast: false
+    lore:
+      - "&7Привилегия с доступом к креативу"
+      - "&7Шанс: &b18%"
+    commands:
+      - "lp user {player} parent set creative"
+      - "msg {player} &bПоздравляем с получением статуса CREATIVE!"
+
+  lord:
+    material: EMERALD
+    name: "&3&lLORD"
+    rarity: "EPIC"
+    chance: 12.0
+    broadcast: true
+    lore:
+      - "&7Высокая привилегия с набором китов"
+      - "&7Шанс: &312%"
+    commands:
+      - "lp user {player} parent set lord"
+      - "msg {player} &3Поздравляем с получением статуса LORD!"
+
+  titan:
+    material: NETHERITE_INGOT
+    name: "&#d633ff&lTITAN"
+    rarity: "MYTHICAL"
+    chance: 7.0
+    broadcast: true
+    lore:
+      - "&7Мощная элитная привилегия"
+      - "&7Шанс: &#d633ff7%"
+    commands:
+      - "lp user {player} parent set titan"
+      - "msg {player} &#d633ffПоздравляем с получением статуса TITAN!"
+
+  dragon:
+    material: DRAGON_EGG
+    name: "&#ff3333&lDRAGON"
+    rarity: "LEGENDARY"
+    chance: 2.5
+    broadcast: true
+    lore:
+      - "&7Легендарный статус на сервере"
+      - "&7Шанс: &#ff33332.5%"
+    commands:
+      - "lp user {player} parent set dragon"
+      - "msg {player} &#ff3333Поздравляем с получением статуса DRAGON!"
+
+  sponsor:
+    material: NETHER_STAR
+    name: "&#ffaa00&lSPONSOR"
+    rarity: "LEGENDARY"
+    chance: 0.5
+    broadcast: true
+    lore:
+      - "&7Наивысший эксклюзивный статус"
+      - "&7Шанс: &#ffaa000.5%"
+    commands:
+      - "lp user {player} parent set sponsor"
+      - "msg {player} &#ffaa00Поздравляем с получением высшего статуса SPONSOR!"

@@ -1,0 +1,72 @@
+id: "titles"
+display-name: "&#ff758c&lК&#ff7eb3&lЕ&#ff87da&lЙ&#f48ffc&lС &#d697ff&lС &#b79fff&lТ&#99a7ff&lИ&#7bafff&lТ&#5db7ff&lУ&#3fbfff&lЛ&#21c7ff&lА&#03cfff&lМ&#00d7ff&lИ"
+
+menu-item:
+  material: NAME_TAG
+  name: "&#ff758c&lК&#ff7eb3&lЕ&#ff87da&lЙ&#f48ffc&lС &#d697ff&lС &#b79fff&lТ&#99a7ff&lИ&#7bafff&lТ&#5db7ff&lУ&#3fbfff&lЛ&#21c7ff&lА&#03cfff&lМ&#00d7ff&lИ"
+  glowing: true
+  lore:
+    - "&7Получите уникальный и стильный"
+    - "&7титул перед ником в чате и табе!"
+    - ""
+    - "&fВаши ключи: &#ff758c%glowcases_keys_titles% шт."
+    - ""
+    - "&6▸ Нажмите &e&lЛКМ&6, чтобы посмотреть призы"
+    - "&6▸ Нажмите &e&lПКМ&6, чтобы открыть кейс"
+
+key:
+  material: PAPER
+  name: "&#ff758c&lКлюч от Кейса Титулов"
+  glowing: true
+  lore:
+    - "&7Используйте этот ключ для"
+    - "&7открытия Кейса с Титулами!"
+
+items:
+  title_novice:
+    material: PAPER
+    name: "&a[Новичок]"
+    rarity: "COMMON"
+    chance: 40.0
+    broadcast: false
+    lore:
+      - "&7Титул новичка"
+      - "&7Шанс: &a40%"
+    commands:
+      - "lp user {player} meta setprefix 100 \"&a[Новичок] \""
+
+  title_warrior:
+    material: IRON_SWORD
+    name: "&c[Воин]"
+    rarity: "UNCOMMON"
+    chance: 30.0
+    broadcast: false
+    lore:
+      - "&7Титул грозного воина"
+      - "&7Шанс: &c30%"
+    commands:
+      - "lp user {player} meta setprefix 100 \"&c[Воин] \""
+
+  title_anarchist:
+    material: TNT
+    name: "&#ff5555&l[Анархист]"
+    rarity: "RARE"
+    chance: 18.0
+    broadcast: true
+    lore:
+      - "&7Титул истинного ценителя анархии"
+      - "&7Шанс: &#ff555518%"
+    commands:
+      - "lp user {player} meta setprefix 100 \"&#ff5555&l[Анархист] \""
+
+  title_legend:
+    material: NETHER_STAR
+    name: "&#ffd700&l[Легенда]"
+    rarity: "LEGENDARY"
+    chance: 12.0
+    broadcast: true
+    lore:
+      - "&7Легендарный титул на весь сервер!"
+      - "&7Шанс: &#ffd70012%"
+    commands:
+      - "lp user {player} meta setprefix 100 \"&#ffd700&l[Легенда] \""

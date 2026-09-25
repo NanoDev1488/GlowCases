@@ -1,0 +1,72 @@
+id: "money"
+display-name: "&#ffd700&lК&#ffe033&lЕ&#ffe966&lЙ&#fff299&lС &#ffffcc&lС &#fff999&lВ&#fff066&lА&#ffe733&lЛ&#ffde00&lЮ&#ffd700&lТ&#ffd000&lО&#ffc900&lЙ"
+
+menu-item:
+  material: SUNFLOWER
+  name: "&#ffd700&lК&#ffe033&lЕ&#ffe966&lЙ&#fff299&lС &#ffffcc&lС &#fff999&lВ&#fff066&lА&#ffe733&lЛ&#ffde00&lЮ&#ffd700&lТ&#ffd000&lО&#ffc900&lЙ"
+  glowing: true
+  lore:
+    - "&7Выиграйте от $10,000 до $1,000,000"
+    - "&7и станьте самым богатым на сервере!"
+    - ""
+    - "&fВаши ключи: &#ffd700%glowcases_keys_money% шт."
+    - ""
+    - "&6▸ Нажмите &e&lЛКМ&6, чтобы посмотреть призы"
+    - "&6▸ Нажмите &e&lПКМ&6, чтобы открыть кейс"
+
+key:
+  material: GOLD_NUGGET
+  name: "&#ffd700&lКлюч от Кейса с Валютой"
+  glowing: true
+  lore:
+    - "&7Используйте этот ключ для"
+    - "&7открытия Кейса с Валютой!"
+
+items:
+  money_10k:
+    material: GOLD_NUGGET
+    name: "&e$10,000 Монет"
+    rarity: "COMMON"
+    chance: 40.0
+    broadcast: false
+    lore:
+      - "&7Базовый денежный приз"
+      - "&7Шанс: &e40%"
+    commands:
+      - "eco give {player} 10000"
+
+  money_50k:
+    material: GOLD_INGOT
+    name: "&6$50,000 Монет"
+    rarity: "UNCOMMON"
+    chance: 30.0
+    broadcast: false
+    lore:
+      - "&7Приличный мешок с монетами"
+      - "&7Шанс: &630%"
+    commands:
+      - "eco give {player} 50000"
+
+  money_200k:
+    material: GOLD_BLOCK
+    name: "&b&l$200,000 Монет"
+    rarity: "RARE"
+    chance: 18.0
+    broadcast: true
+    lore:
+      - "&7Большой капитал для торговли"
+      - "&7Шанс: &b18%"
+    commands:
+      - "eco give {player} 200000"
+
+  money_1m:
+    material: EMERALD_BLOCK
+    name: "&#ffd700&l$1,000,000 МОНЕТ"
+    rarity: "LEGENDARY"
+    chance: 12.0
+    broadcast: true
+    lore:
+      - "&7ДЖЕКПОТ! Целый миллион монет!"
+      - "&7Шанс: &#ffd70012%"
+    commands:
+      - "eco give {player} 1000000"

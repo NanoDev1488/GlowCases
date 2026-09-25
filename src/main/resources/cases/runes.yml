@@ -1,0 +1,72 @@
+id: "runes"
+display-name: "&#4fa3e3&lК&#57ade8&lЕ&#60b7ed&lЙ&#68c1f2&lС &#79d5fc&lС &#89e3ff&lР&#93e9ff&lУ&#9eefff&lН&#a8f4ff&lА&#b3faff&lМ&#bdffff&lИ"
+
+menu-item:
+  material: BEACON
+  name: "&#4fa3e3&lК&#57ade8&lЕ&#60b7ed&lЙ&#68c1f2&lС &#79d5fc&lС &#89e3ff&lР&#93e9ff&lУ&#9eefff&lН&#a8f4ff&lА&#b3faff&lМ&#bdffff&lИ"
+  glowing: true
+  lore:
+    - "&7Получите магические руны с"
+    - "&7уникальными эффектами и бонусами!"
+    - ""
+    - "&fВаши ключи: &#4fa3e3%glowcases_keys_runes% шт."
+    - ""
+    - "&6▸ Нажмите &e&lЛКМ&6, чтобы посмотреть призы"
+    - "&6▸ Нажмите &e&lПКМ&6, чтобы открыть кейс"
+
+key:
+  material: PRISMARINE_SHARD
+  name: "&#4fa3e3&lКлюч от Кейса с Рунами"
+  glowing: true
+  lore:
+    - "&7Используйте этот ключ для"
+    - "&7открытия Кейса с Рунами!"
+
+items:
+  speed_rune:
+    material: SUGAR
+    name: "&bРуна Скорости I"
+    rarity: "COMMON"
+    chance: 40.0
+    broadcast: false
+    lore:
+      - "&7Дарует постоянное ускорение"
+      - "&7Шанс: &b40%"
+    commands:
+      - "effect give {player} speed 300 1"
+
+  strength_rune:
+    material: BLAZE_POWDER
+    name: "&cРуна Силы I"
+    rarity: "UNCOMMON"
+    chance: 30.0
+    broadcast: false
+    lore:
+      - "&7Увеличивает наносимый урон"
+      - "&7Шанс: &c30%"
+    commands:
+      - "effect give {player} strength 300 1"
+
+  regeneration_rune:
+    material: GHAST_TEAR
+    name: "&dРуна Регенерации II"
+    rarity: "RARE"
+    chance: 18.0
+    broadcast: false
+    lore:
+      - "&7Быстро восстанавливает здоровье"
+      - "&7Шанс: &d18%"
+    commands:
+      - "effect give {player} regeneration 300 2"
+
+  god_rune:
+    material: TOTEM_OF_UNDYING
+    name: "&#ffd700&lРуна Бессмертия"
+    rarity: "LEGENDARY"
+    chance: 12.0
+    broadcast: true
+    lore:
+      - "&7Легендарная руна защиты"
+      - "&7Шанс: &#ffd70012%"
+    commands:
+      - "give {player} totem_of_undying 3"

@@ -1,0 +1,72 @@
+id: "spawners"
+display-name: "&#a8ff78&lК&#95f776&lЕ&#82ef74&lЙ&#6fe772&lС &#4be06e&lС&#38d86c&lП&#25d06a&lА&#12c868&lВ&#00c066&lН&#00b864&lЕ&#00b062&lР&#00a860&lО&#00a05e&lВ"
+
+menu-item:
+  material: SPAWNER
+  name: "&#a8ff78&lК&#95f776&lЕ&#82ef74&lЙ&#6fe772&lС &#4be06e&lС&#38d86c&lП&#25d06a&lА&#12c868&lВ&#00c066&lН&#00b864&lЕ&#00b062&lР&#00a860&lО&#00a05e&lВ"
+  glowing: true
+  lore:
+    - "&7Получите ценные спавнеры для"
+    - "&7создания эффективных авто-ферм!"
+    - ""
+    - "&fВаши ключи: &#a8ff78%glowcases_keys_spawners% шт."
+    - ""
+    - "&6▸ Нажмите &e&lЛКМ&6, чтобы посмотреть призы"
+    - "&6▸ Нажмите &e&lПКМ&6, чтобы открыть кейс"
+
+key:
+  material: NETHER_BRICK
+  name: "&#a8ff78&lКлюч от Кейса Спавнеров"
+  glowing: true
+  lore:
+    - "&7Используйте этот ключ для"
+    - "&7открытия Кейса со Спавнерами!"
+
+items:
+  zombie_spawner:
+    material: SPAWNER
+    name: "&2Спавнер Зомби"
+    rarity: "COMMON"
+    chance: 45.0
+    broadcast: false
+    lore:
+      - "&7Базовый спавнер зомби"
+      - "&7Шанс: &245%"
+    commands:
+      - "give {player} spawner{BlockEntityTag:{SpawnData:{id:\"minecraft:zombie\"}}} 1"
+
+  skeleton_spawner:
+    material: SPAWNER
+    name: "&fСпавнер Скелетов"
+    rarity: "UNCOMMON"
+    chance: 30.0
+    broadcast: false
+    lore:
+      - "&7Спавнер для добычи костей и стрел"
+      - "&7Шанс: &f30%"
+    commands:
+      - "give {player} spawner{BlockEntityTag:{SpawnData:{id:\"minecraft:skeleton\"}}} 1"
+
+  blaze_spawner:
+    material: SPAWNER
+    name: "&6Спавнер Ифритов"
+    rarity: "RARE"
+    chance: 15.0
+    broadcast: true
+    lore:
+      - "&7Спавнер ифритов для опыта и стержней"
+      - "&7Шанс: &615%"
+    commands:
+      - "give {player} spawner{BlockEntityTag:{SpawnData:{id:\"minecraft:blaze\"}}} 1"
+
+  golem_spawner:
+    material: SPAWNER
+    name: "&#ffd700&lСпавнер Железных Големов"
+    rarity: "LEGENDARY"
+    chance: 10.0
+    broadcast: true
+    lore:
+      - "&7Самый прибыльный спавнер железа!"
+      - "&7Шанс: &#ffd70010%"
+    commands:
+      - "give {player} spawner{BlockEntityTag:{SpawnData:{id:\"minecraft:iron_golem\"}}} 1"

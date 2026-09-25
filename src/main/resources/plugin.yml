@@ -1,0 +1,26 @@
+name: GlowCases
+version: 1.0.0
+main: ru.glowcase.GlowCasesPlugin
+api-version: 1.16
+authors: [GlowDev]
+description: HolyWorld-style Cases Plugin with smooth roulette, holograms, and multi-storage
+softdepend: [PlaceholderAPI, Vault]
+
+commands:
+  glowcases:
+    description: Main GlowCases admin command
+    aliases: [gcases, gcase]
+    permission: glowcases.admin
+    usage: /<command> [help|givekey|setkey|takekey|keys|setcase|delcase|reload]
+  cases:
+    description: Open the cases menu GUI
+    aliases: [case, donatecase, donatecases]
+    usage: /<command>
+
+permissions:
+  glowcases.admin:
+    description: Access to administrative GlowCases commands
+    default: op
+  glowcases.use:
+    description: Access to open and view cases
+    default: true
