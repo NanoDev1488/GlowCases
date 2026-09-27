@@ -33,6 +33,21 @@ public class HologramManager {
         holograms.add(holo);
     }
 
+    public CaseHologram getHologram(CaseBlock block) {
+        if (block == null || block.getLocation() == null) return null;
+        return getHologram(block.getLocation());
+    }
+
+    public CaseHologram getHologram(Location loc) {
+        if (loc == null) return null;
+        for (CaseHologram holo : holograms) {
+            if (holo.getCaseBlock().matches(loc)) {
+                return holo;
+            }
+        }
+        return null;
+    }
+
     public void removeForBlock(Location loc) {
         Iterator<CaseHologram> iterator = holograms.iterator();
         while (iterator.hasNext()) {

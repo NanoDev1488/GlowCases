@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import ru.glowcase.GlowCasesPlugin;
 import ru.glowcase.animation.RouletteAnimation;
+import ru.glowcase.animation.WorldRouletteAnimation;
 import ru.glowcase.case_.Case;
 import ru.glowcase.case_.CaseBlock;
 import ru.glowcase.gui.CasePreviewMenu;
@@ -47,9 +48,15 @@ public class CaseBlockListener implements Listener {
             // Preview case
             new CasePreviewMenu(plugin, player, targetCase).open();
         } else if (event.getAction() == Action.RIGHT_CLICK_BLOCK) {
-            // Open case
+            // Check if player is already opening
             if (plugin.getActiveOpeners().contains(player.getUniqueId())) {
                 player.sendMessage(ColorUtil.color(plugin.getMessages().getString("case-already-opening", "&cВы уже открываете кейс!")));
+                return;
+            }
+
+            // Check if this physical case block is currently animating
+            if (plugin.getActiveBlocks().contains(block.getLocation())) {
+                player.sendMessage(ColorUtil.color(plugin.getMessages().getString("case-block-busy", "&cЭтот кейс сейчас открывает другой игрок! Подождите...")));
                 return;
             }
 
@@ -62,9 +69,19 @@ public class CaseBlockListener implements Listener {
                 return;
             }
 
-            // Deduct key and launch roulette
+            // Deduct key
             user.takeKey(targetCase.getId());
-            new RouletteAnimation(plugin, player, targetCase, plugin.getActiveOpeners()).start();
+
+            String mode = plugin.getConfig().getString("world-effects.mode", "WORLD").toUpperCase();
+            if (mode.equals("GUI")) {
+                new RouletteAnimation(plugin, player, targetCase, plugin.getActiveOpeners(), null).start();
+            } else if (mode.equals("BOTH")) {
+                new RouletteAnimation(plugin, player, targetCase, plugin.getActiveOpeners(), caseBlock).start();
+            } else {
+                // Default: HolyCases in-air 3D animation
+                plugin.getActiveOpeners().add(player.getUniqueId());
+                new WorldRouletteAnimation(plugin, player, targetCase, caseBlock, null, true).start();
+            }
         }
     }
 

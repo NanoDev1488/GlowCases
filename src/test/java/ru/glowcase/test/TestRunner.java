@@ -56,6 +56,15 @@ public class TestRunner {
             failed++;
         }
 
+        try {
+            ParticleUtilTest.run();
+            passed++;
+        } catch (Throwable t) {
+            System.err.println("  [FAILED] ParticleUtilTest: " + t.getMessage());
+            t.printStackTrace();
+            failed++;
+        }
+
         long elapsed = System.currentTimeMillis() - startTime;
         System.out.println("=================================================");
         System.out.printf("  Summary: %d Passed, %d Failed (Time: %d ms)%n", passed, failed, elapsed);

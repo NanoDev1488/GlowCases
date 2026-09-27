@@ -1,13 +1,16 @@
 package ru.glowcase;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import ru.glowcase.animation.WorldRouletteAnimation;
 import ru.glowcase.case_.CaseManager;
 import ru.glowcase.command.CasesCommand;
 import ru.glowcase.command.GlowCasesCommand;
+import ru.glowcase.effect.WorldEffectManager;
 import ru.glowcase.hologram.HologramManager;
 import ru.glowcase.listener.CaseBlockListener;
 import ru.glowcase.listener.InventoryListener;
@@ -30,11 +33,14 @@ public class GlowCasesPlugin extends JavaPlugin {
     private UserManager userManager;
     private StorageManager storageManager;
     private HologramManager hologramManager;
+    private WorldEffectManager worldEffectManager;
 
     private FileConfiguration messagesConfig;
     private File messagesFile;
 
     private final Set<UUID> activeOpeners = Collections.newSetFromMap(new ConcurrentHashMap<>());
+    private final Set<Location> activeBlocks = Collections.newSetFromMap(new ConcurrentHashMap<>());
+    private final Set<WorldRouletteAnimation> runningAnimations = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
     @Override
     public void onEnable() {
@@ -53,6 +59,7 @@ public class GlowCasesPlugin extends JavaPlugin {
         this.caseManager.load();
 
         this.hologramManager = new HologramManager(this);
+        this.worldEffectManager = new WorldEffectManager(this);
 
         // Load online players (e.g. during reload)
         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -98,6 +105,16 @@ public class GlowCasesPlugin extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        // Clean up all running world animations
+        for (WorldRouletteAnimation anim : runningAnimations) {
+            if (anim != null) {
+                anim.cleanUp();
+            }
+        }
+        runningAnimations.clear();
+        activeBlocks.clear();
+        activeOpeners.clear();
+
         if (hologramManager != null) {
             hologramManager.despawnAll();
         }
@@ -162,7 +179,19 @@ public class GlowCasesPlugin extends JavaPlugin {
         return hologramManager;
     }
 
+    public WorldEffectManager getWorldEffectManager() {
+        return worldEffectManager;
+    }
+
     public Set<UUID> getActiveOpeners() {
         return activeOpeners;
+    }
+
+    public Set<Location> getActiveBlocks() {
+        return activeBlocks;
+    }
+
+    public Set<WorldRouletteAnimation> getRunningAnimations() {
+        return runningAnimations;
     }
 }

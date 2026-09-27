@@ -1,19 +1,15 @@
 package ru.glowcase.animation;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
+import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import ru.glowcase.GlowCasesPlugin;
 import ru.glowcase.case_.Case;
+import ru.glowcase.case_.CaseBlock;
 import ru.glowcase.case_.CaseItem;
 import ru.glowcase.user.CaseUser;
 import ru.glowcase.util.ColorUtil;
@@ -27,6 +23,7 @@ public class RouletteAnimation {
     private final GlowCasesPlugin plugin;
     private final Player player;
     private final Case targetCase;
+    private final CaseBlock caseBlock;
     private final CaseItem winningItem;
     private final Inventory inventory;
     private final List<CaseItem> sequence = new ArrayList<>();
@@ -34,19 +31,22 @@ public class RouletteAnimation {
 
     private int currentIndex = 0;
     private int step = 0;
+    private double currentAngle = 0;
     private boolean finished = false;
+    private WorldRouletteAnimation worldAnimation;
 
     // Slots for standard 27-slot chest roulette
-    // Indicator top: slot 4, Indicator bottom: slot 22
-    // Roulette row: slots 9, 10, 11, 12, 13, 14, 15, 16, 17
-    // Winner is in slot 13 (the center slot)
     private static final int[] ROULETTE_SLOTS = {9, 10, 11, 12, 13, 14, 15, 16, 17};
-    private static final int CENTER_SLOT = 13;
 
     public RouletteAnimation(GlowCasesPlugin plugin, Player player, Case targetCase, Set<UUID> activeOpeners) {
+        this(plugin, player, targetCase, activeOpeners, null);
+    }
+
+    public RouletteAnimation(GlowCasesPlugin plugin, Player player, Case targetCase, Set<UUID> activeOpeners, CaseBlock caseBlock) {
         this.plugin = plugin;
         this.player = player;
         this.targetCase = targetCase;
+        this.caseBlock = caseBlock;
         this.activeOpeners = activeOpeners;
         this.winningItem = targetCase.getRandomItem();
 
@@ -64,8 +64,6 @@ public class RouletteAnimation {
         for (int i = 0; i < totalRolls; i++) {
             sequence.add(targetCase.getRandomItem());
         }
-        // Ensure winner lands exactly in center (slot 13) at totalRolls
-        // When currentIndex reaches (totalRolls - 4), slot 13 will be sequence.get(totalRolls)
         sequence.set(totalRolls - 1, winningItem);
     }
 
@@ -107,8 +105,14 @@ public class RouletteAnimation {
         activeOpeners.add(player.getUniqueId());
         player.openInventory(inventory);
 
+        // Если открыт у физического блока и включен режим BOTH - запускаем параллельную 3D анимацию в мире
+        String mode = plugin.getConfig().getString("world-effects.mode", "BOTH").toUpperCase();
+        if (caseBlock != null && mode.equals("BOTH")) {
+            worldAnimation = new WorldRouletteAnimation(plugin, player, targetCase, caseBlock, winningItem, false);
+            worldAnimation.start();
+        }
+
         // Schedule deceleration ticks:
-        // Starts fast (every 1-2 ticks), slows down to 12 ticks
         new BukkitRunnable() {
             int tickDelay = 1;
             int ticksPassed = 0;
@@ -119,6 +123,13 @@ public class RouletteAnimation {
                     finishReward();
                     cancel();
                     return;
+                }
+
+                currentAngle += 0.25;
+
+                // Партиклы спирали у блока во время прокрутки в GUI
+                if (caseBlock != null && (worldAnimation == null)) {
+                    plugin.getWorldEffectManager().playTickParticles(caseBlock.getLocation(), currentAngle, targetCase);
                 }
 
                 ticksPassed++;
@@ -168,9 +179,10 @@ public class RouletteAnimation {
         // Play win sound
         SoundUtil.play(player, plugin.getConfig().getConfigurationSection("roulette.win-sound"));
 
-        // Fire firework for rare / legendary items
-        if (winningItem.getRarity().ordinal() >= 2 && player.isOnline()) {
-            spawnFirework(player);
+        // Визуальные эффекты празднования в мире (фейерверки, столбы света, взрыв частиц)
+        Location effectLoc = caseBlock != null ? caseBlock.getLocation() : player.getLocation();
+        if (worldAnimation == null) {
+            plugin.getWorldEffectManager().playWinCelebration(effectLoc, winningItem, player);
         }
 
         // Send Titles
@@ -209,22 +221,6 @@ public class RouletteAnimation {
                 Bukkit.broadcastMessage(ColorUtil.color(line));
             }
         }
-    }
-
-    private void spawnFirework(Player p) {
-        try {
-            Firework fw = p.getWorld().spawn(p.getLocation(), Firework.class);
-            FireworkMeta meta = fw.getFireworkMeta();
-            meta.addEffect(FireworkEffect.builder()
-                    .with(FireworkEffect.Type.BALL_LARGE)
-                    .withColor(winningItem.getRarity().getFireworkColor(), Color.ORANGE)
-                    .withFade(Color.YELLOW)
-                    .flicker(true)
-                    .trail(true)
-                    .build());
-            meta.setPower(1);
-            fw.setFireworkMeta(meta);
-        } catch (Exception ignored) {}
     }
 
     public Inventory getInventory() {

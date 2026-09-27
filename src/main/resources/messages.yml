@@ -28,6 +28,7 @@ target-not-case-block: "&#fb6b02&lКЕЙСЫ &8» &cЭтот блок не пр�
 
 # Процесс открытия
 case-already-opening: "&#fb6b02&lКЕЙСЫ &8» &cВы уже открываете кейс! Дождитесь окончания."
+case-block-busy: "&#fb6b02&lКЕЙСЫ &8» &cЭтот кейс сейчас открывает другой игрок! Подождите..."
 case-opened-title: "&#fb6b02&lПОЗДРАВЛЯЕМ!"
 case-opened-subtitle: "&fВы выиграли: {item_display}"
 

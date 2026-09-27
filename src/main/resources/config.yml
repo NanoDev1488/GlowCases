@@ -18,7 +18,42 @@ storage:
     minimum-idle: 2
     connection-timeout: 30000
 
-# Настройки голограмм над блоками кейсов
+# Визуальные 3D-эффекты и анимации в игровом мире
+world-effects:
+  # Режим анимации при клике по кейс-блоку:
+  # WORLD - раскрутка 3D-анимацией в воздухе над кейсом как на HolyWorld (ПО УМОЛЧАНИЮ)
+  # BOTH  - открывает GUI-рулетку + запускает 3D-шоу над блоком в мире для всех
+  # GUI   - только классическое инвентарное меню
+  mode: "WORLD"
+
+  # Эффекты частиц во время прокрутки в воздухе
+  particles:
+    enabled: true
+    # Спираль частиц вокруг блока (REDSTONE, FLAME, SPELL_WITCH, SOUL_FIRE_FLAME, END_ROD, etc.)
+    spiral-particle: "REDSTONE"
+    spiral-color: "#FB8C00"
+    # Нижнее кольцо частиц
+    rings-enabled: true
+    ring-particle: "FLAME"
+
+  # Празднование победы (финал прокрутки)
+  celebration:
+    # Сферический взрыв частиц (FIREWORKS_SPARK, TOTEM, VILLAGER_HAPPY)
+    nova-enabled: true
+    nova-particle: "FIREWORKS_SPARK"
+    # Вертикальный столб частиц в небо
+    pillar-enabled: true
+    pillar-particle: "END_ROD"
+    # Длительность показа победного 3D-предмета и голограммы в секундах
+    display-duration-seconds: 5
+
+  # Настройки праздничных салютов
+  fireworks:
+    enabled: true
+    # Количество последовательных залпов
+    burst-count: 3
+
+# Настройки голограмм над блоками кейсов в покое
 holograms:
   enabled: true
   offset-y: 1.6 # Высота над блоком
