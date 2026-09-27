@@ -39,7 +39,7 @@ jobs:
           if [[ "${{ github.ref }}" == refs/tags/* ]]; then
             echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
           else
-            echo "TAG_NAME=v1.0.0" >> $GITHUB_OUTPUT
+            echo "TAG_NAME=v1.1.0" >> $GITHUB_OUTPUT
           fi
 
       - name: Create Release
@@ -48,15 +48,19 @@ jobs:
           tag_name: ${{ steps.get_version.outputs.TAG_NAME }}
           name: GlowCases Release ${{ steps.get_version.outputs.TAG_NAME }}
           body: |
-            ## GlowCases ✨ (HolyWorld Style Cases)
+            ## GlowCases v1.1.0 ✨ (HolyWorld / HolyCases Style)
             
-            ### 🌟 Что нового:
-            - 🎰 Плавная CS:GO / Рулетка анимация замедления.
-            - 🔮 Нативные 3D-голограммы и парящие вращающиеся предметы.
-            - 📜 Меню предпросмотра наград и шансов.
+            ### 🌟 Что нового в версии 1.1.0:
+            - 🎆 **3D-раскрутка в воздухе над кейсом по умолчанию (HolyCases style)**:
+              - 4 парящих орбитальных предмета и центральный предмет, вращающиеся по физической кривой.
+              - Восходящая двойная DNA-спираль частиц и пламенные кольца вокруг блока.
+              - Звуки вращения с нарастающим тоном (Pitch-Shift).
+            - 🏆 **Победная 3D-голограмма и спецэффекты**:
+              - Вспышка Nova Burst, столб света в небо (`End Rod`) и салют цвета редкости.
+              - Парящая голограмма победителя с ником, названием предмета, редкостью и шансом на 5 секунд.
+            - 🛡 **Защита от занятости блока**: невозможность повторного открытия одним блоком в один момент.
+            - 🎰 Опциональные режимы `WORLD`, `BOTH`, `GUI` в `config.yml`.
             - 🗄 Поддержка SQLite, MySQL (HikariCP) и YAML.
-            - 💎 Поддержка RGB/HEX цветов и градиентов.
-            - 🎁 5 предустановленных кейсов (Донат, Руны, Спавнеры, Титулы, Валюта).
             - 🧩 Поддержка PlaceholderAPI и Vault.
             
             **Совместимость**: Spigot / Paper / Purpur 1.16.5 – 1.21.x

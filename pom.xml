@@ -6,11 +6,11 @@
 
     <groupId>ru.glowcase</groupId>
     <artifactId>GlowCases</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <name>GlowCases</name>
-    <description>HolyWorld-style Cases Plugin with Roulette Animations, Holograms and Multi-Storage</description>
+    <description>HolyWorld-style Cases Plugin with In-Air 3D Roulette Animations, Holograms and Multi-Storage</description>
 
     <properties>
         <java.version>16</java.version>
